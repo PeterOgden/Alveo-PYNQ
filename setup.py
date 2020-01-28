@@ -1,4 +1,4 @@
-#  Copyright (C) 2019 Xilinx, Inc
+#  Copyright (C) 2020 Xilinx, Inc
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ from pynq.utils import build_py
 
 
 __author__ = "Giuseppe Natale"
-__copyright__ = "Copyright 2019, Xilinx"
+__copyright__ = "Copyright 2020, Xilinx"
 __email__ = "pynq_support@xilinx.com"
 
 
@@ -40,7 +40,7 @@ def _extend_package(path):
 _extend_package(os.path.join(module_name, "notebooks"))
 
 setup(name=module_name,
-      version="1.0.alpha3",
+      version="1.0.alpha1",
       description="Alveo-PYNQ",
       author="Giuseppe Natale",
       author_email="pynq_support@xilinx.com",
@@ -51,6 +51,9 @@ setup(name=module_name,
           "": _data_files,
       },
       python_requires='>=3.5.2',
+      setup_requires=[
+          "pynq>=2.5.1a1"
+      ],
       install_requires=[
           "pynq>=2.5.1a1",
           "jupyter",
