@@ -40,7 +40,7 @@ def _extend_package(path):
 _extend_package(os.path.join(module_name, "notebooks"))
 
 setup(name=module_name,
-      version="1.0.alpha2",
+      version="1.0.alpha3",
       description="Alveo-PYNQ",
       author="Giuseppe Natale",
       author_email="pynq_support@xilinx.com",
