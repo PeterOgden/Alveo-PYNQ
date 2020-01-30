@@ -1,4 +1,4 @@
-DEVICE = xilinx_u200_xdma_201830_2
+DEVICE := xilinx_u200_xdma_201830_2
 TARGET := hw
 FREQUENCY := 300
 VPP := v++
@@ -16,7 +16,7 @@ XO_DIR := ./_xo.$(TARGET).$(XSA)
 XCLBIN_DIR := ./_xclbin.$(TARGET).$(XSA)
 MOD_SRC_DIR := .src
 SRC_DIR := src
-INSTALL_PATH := ../pynqexamples/notebooks
+INSTALL_PATH := ../pynq_alveo_examples/notebooks
 
 # Kernel compiler global settings
 CLFLAGS += -t $(TARGET) --platform $(DEVICE)
@@ -33,22 +33,32 @@ KRNL_OPT_XO += $(XO_DIR)/vadd_multibanks.xo
 ADVANCED_XO += $(XO_DIR)/vadd_advanced.xo
 ADVANCED_XO += $(XO_DIR)/mmult.xo
 
-INSTALL_TARGETS += $(INSTALL_PATH)/3-advanced-features/advanced.xclbin
-INSTALL_TARGETS += $(INSTALL_PATH)/2-kernel-optimization/kernel_opt.xclbin
-INSTALL_TARGETS += $(INSTALL_PATH)/1-introduction/intro.xclbin
+INSTALL_TARGETS += $(INSTALL_PATH)/3_advanced_features/advanced.xclbin
+INSTALL_TARGETS += $(INSTALL_PATH)/2_kernel_optimization/kernel_opt.xclbin
+INSTALL_TARGETS += $(INSTALL_PATH)/1_introduction/intro.xclbin
 
 all: build install
 
 build: advanced kernel_opt intro
 
-advanced: advanced.$(TARGET).$(XSA).xclbin
+advanced: check-vitis check-xrt advanced.$(TARGET).$(XSA).xclbin
 
-kernel_opt: kernel_opt.$(TARGET).$(XSA).xclbin
+kernel_opt: check-vitis check-xrt kernel_opt.$(TARGET).$(XSA).xclbin
 
-intro: intro.$(TARGET).$(XSA).xclbin
+intro: check-vitis check-xrt intro.$(TARGET).$(XSA).xclbin
 
 # install targets assume both xclbin and dst folder exist
 install: $(INSTALL_TARGETS)
+
+check-vitis:
+ifndef XILINX_VITIS
+	$(error XILINX_VITIS is not set. Please make sure you have sourced the Vitis settings64.{csh,sh})
+endif
+
+check-xrt:
+ifndef XILINX_XRT
+	$(error XILINX_XRT variable is not set. Please make sure you have sourced the XRT setup.{csh,sh})
+endif
 
 $(INSTALL_PATH)/1-introduction/intro.xclbin: 
 	$(CP) intro.$(TARGET).$(XSA).xclbin $@
@@ -92,7 +102,7 @@ advanced.$(TARGET).$(XSA).xclbin: $(ADVANCED_XO) | $(XCLBIN_DIR)
 
 clean:
 	-$(RMDIR) _xclbin* _xo* .Xil $(MOD_SRC_DIR)
-	-$(RMDIR) *.log *.jou  *.info *.ltx *.pb *.link_summary
+	-$(RM) *.log *.jou  *.info *.ltx *.pb *.link_summary
 
 cleanall: clean
-	-$(RMDIR) *.xclbin
+	-$(RM) *.xclbin
