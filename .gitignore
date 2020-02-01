@@ -1,11 +1,11 @@
-overlays/_xclbin* 
-overlays/_xo*
-overlays/.Xil
-overlays/.src
+overlay/_xclbin* 
+overlay/_xo*
+overlay/.Xil
+overlay/.src
+overlay/*.xclbin
 *.log 
 *.jou  
 *.info
 *.ltx
 *.pb
 *.link_summary
-*.xclbin
