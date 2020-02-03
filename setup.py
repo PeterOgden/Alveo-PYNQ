@@ -51,6 +51,8 @@ setup(name=module_name,
           "": _data_files,
       },
       python_requires='>=3.5.2',
+      # keeping 'setup_requires' only for readability - relying on
+      # pyproject.toml and PEP 517/518
       setup_requires=[
           "pynq>=2.5.1a1"
       ],
