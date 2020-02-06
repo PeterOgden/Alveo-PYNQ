@@ -42,6 +42,8 @@ Shell                    | Board
 -------------------------|-----------------
 xilinx_u200_xdma_201830_2|Xilinx Alveo U200
 xilinx_u250_xdma_201830_2|Xilinx Alveo U250
+xilinx_u280_xdma_201920_1|Xilinx Alveo U280
+xilinx_u50_xdma_201920_1|Xilinx Alveo U50
 
 Designs are built using Vitis 2019.2.
 
