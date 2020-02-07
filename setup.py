@@ -72,6 +72,8 @@ setup(name=module_name,
       },
       entry_points={
           "pynq.notebooks": [
+              "0-welcome-to-pynq = pynq_alveo_examples.notebooks."
+              "0_welcome_to_pynq",
               "1-introduction = pynq_alveo_examples.notebooks.1_introduction",
               "2-kernel-optimization = pynq_alveo_examples.notebooks."
               "2_kernel_optimization",
