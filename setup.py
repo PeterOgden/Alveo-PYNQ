@@ -79,8 +79,8 @@ setup(name=module_name,
               "2_kernel_optimization",
               "3-advanced-features = pynq_alveo_examples.notebooks."
               "3_advanced_features",
-              "4-building-emulation = pynq_alveo_examples.notebooks."
-              "4_building_emulation"
+              "4-building-and-emulation = pynq_alveo_examples.notebooks."
+              "4_building_and_emulation"
           ]
       },
       cmdclass={"build_py": build_py},
