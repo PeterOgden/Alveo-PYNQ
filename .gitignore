@@ -1,8 +1,8 @@
-overlay/_xclbin* 
-overlay/_xo*
-overlay/.Xil
-overlay/.src
-overlay/*.xclbin
+overlays/_xclbin* 
+overlays/_xo*
+overlays/.Xil
+overlays/.src
+overlays/*.xclbin
 *.log 
 *.jou  
 *.info

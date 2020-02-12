@@ -61,7 +61,7 @@ ifndef XILINX_XRT
 endif
 
 $(INSTALL_PATH)/1-introduction/intro.xclbin:
-ifneq (,$(wildcard ./intro.$(TARGET).$(XSA).xclbin))
+ifneq (,$(wildcard intro.$(TARGET).$(XSA).xclbin))
 ifneq (,$(wildcard $(INSTALL_PATH)/1-introduction))
 	$(CP) intro.$(TARGET).$(XSA).xclbin $@
 else ifneq (,$(wildcard $(INSTALL_PATH)/1_introduction))
