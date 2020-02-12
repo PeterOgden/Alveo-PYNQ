@@ -33,9 +33,9 @@ KRNL_OPT_XO += $(XO_DIR)/vadd_multibanks.xo
 ADVANCED_XO += $(XO_DIR)/vadd_advanced.xo
 ADVANCED_XO += $(XO_DIR)/mmult.xo
 
-INSTALL_TARGETS += $(INSTALL_PATH)/3_advanced_features/advanced.xclbin
-INSTALL_TARGETS += $(INSTALL_PATH)/2_kernel_optimization/kernel_opt.xclbin
-INSTALL_TARGETS += $(INSTALL_PATH)/1_introduction/intro.xclbin
+INSTALL_TARGETS += $(INSTALL_PATH)/3-advanced-features/advanced.xclbin
+INSTALL_TARGETS += $(INSTALL_PATH)/2-kernel-optimization/kernel_opt.xclbin
+INSTALL_TARGETS += $(INSTALL_PATH)/1-introduction/intro.xclbin
 
 all: build install
 
@@ -60,12 +60,42 @@ ifndef XILINX_XRT
 	$(error XILINX_XRT variable is not set. Please make sure you have sourced the XRT setup.{csh,sh})
 endif
 
-$(INSTALL_PATH)/1-introduction/intro.xclbin: 
+$(INSTALL_PATH)/1-introduction/intro.xclbin:
+ifneq (,$(wildcard ./intro.$(TARGET).$(XSA).xclbin))
+ifneq (,$(wildcard $(INSTALL_PATH)/1-introduction))
 	$(CP) intro.$(TARGET).$(XSA).xclbin $@
+else ifneq (,$(wildcard $(INSTALL_PATH)/1_introduction))
+	$(CP) intro.$(TARGET).$(XSA).xclbin $(INSTALL_PATH)/1_introduction/intro.xclbin
+else
+	$(warning Could not copy to $(INSTALL_PATH)/1-introduction as the folder does not exist)
+endif
+else
+	$(warning Could not find file intro.$(TARGET).$(XSA).xclbin)
+endif
 $(INSTALL_PATH)/2-kernel-optimization/kernel_opt.xclbin:
+ifneq (,$(wildcard kernel_opt.$(TARGET).$(XSA).xclbin))
+ifneq (,$(wildcard $(INSTALL_PATH)/2-kernel-optimization))
 	$(CP) kernel_opt.$(TARGET).$(XSA).xclbin $@
+else ifneq (,$(wildcard $(INSTALL_PATH)/2_kernel_optimization))
+	$(CP) intro.$(TARGET).$(XSA).xclbin $(INSTALL_PATH)/2_kernel_optimization/kernel_opt.xclbin
+else
+	$(warning Could not copy to $(INSTALL_PATH)/2-kernel-optimization as the folder does not exist)
+endif
+else
+	$(warning Could not find file kernel_opt.$(TARGET).$(XSA).xclbin)
+endif
 $(INSTALL_PATH)/3-advanced-features/advanced.xclbin:
+ifneq (,$(wildcard advanced.$(TARGET).$(XSA).xclbin))
+ifneq (,$(wildcard $(INSTALL_PATH)/3-advanced-features))
 	$(CP) advanced.$(TARGET).$(XSA).xclbin $@
+else ifneq (,$(wildcard $(INSTALL_PATH)/3_advanced_features))
+	$(CP) intro.$(TARGET).$(XSA).xclbin $(INSTALL_PATH)/3_advanced_features
+else
+	$(warning Could not copy to $(INSTALL_PATH)/3-advanced-features as the folder does not exist)
+endif
+else
+	$(warning Could not find file advanced.$(TARGET).$(XSA).xclbin)
+endif
 
 $(MOD_SRC_DIR): 
 	mkdir -p $@

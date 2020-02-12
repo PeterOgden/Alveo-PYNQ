@@ -34,9 +34,9 @@ multiplication* kernels specifically developed for this overlay, for which the
 source code is available [here](./src/advanced_features.cpp). It is used for 
 the [advanced features notebooks](../pynqexamples/notebooks/3-advanced-features).
 
-## Supported Cards/Shells
+## Supported Boards/Shells
 
-Currently, we distribute overlays only for the following Alveo cards and shells:
+Currently, we distribute overlays only for the following Alveo boards and shells:
 
 Shell                    | Board             
 -------------------------|-----------------
@@ -46,6 +46,7 @@ xilinx_u280_xdma_201920_1|Xilinx Alveo U280
 xilinx_u50_xdma_201920_1|Xilinx Alveo U50
 
 Designs are built using Vitis 2019.2.
+The *Kernel Optimization* overlay is not available for the Alveo U280 and U50.
 
 ## Rebuilding Overlays
 
@@ -76,25 +77,22 @@ To install built xclbins in a specific path (different from the default one):
    ```
 
 It is expected that the target path contains the appropriate notebooks folders.
-Otherwise, the installation will fail.
+Otherwise, the install step will not be carried out.
 
-## Install Examples using Cloned Repo
+## Use Built Overlays
 
-As explained in the repository's main [README](../README.md), once you have 
-synthesized and copied the overlays in the appropriate notebooks folder, you 
-can can install the python package from the cloned repo to enable the
-`pynq get-notebooks` command to see the included examples.
-This is currently the only way to deploy the examples when using manually 
-synthesized overlays.
-
-After having synthesized and copied the overlays, as explained above, move
-to the root of this repository and run:
+Once you have synthesized your overlays, you can use them by first getting the
+notebooks avoiding overlay lookup (Refer to `pynq get-notebooks --help` for 
+info on the used options.) 
 
 ```bash
-pip3 install -U .
+pynq get-notebooks --from-package pynq_alveo_examples --ignore-overlays \
+   --path <target-path>
 ```
 
-Remember that when using conda, `pip3` might not be available, while `pip` will
-refer to Python3. In this case, use `pip` instead of `pip3`.
+And then copy the overlays in the target directory, using the `make install` 
+command
 
-After that, run the `pynq get-notebooks` command to get the examples.
+```bash
+make install INSTALL_PATH=<target-path>/pynq-notebooks
+```
