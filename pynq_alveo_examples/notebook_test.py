@@ -23,6 +23,14 @@ from pynq.utils import run_notebook
 NOTEBOOK_PATH = os.path.join(os.path.dirname(__file__), 'notebooks')
 
 
+def get_stdout(result, cell_num):
+    outputs = result.outputs[cell_num-1]
+    for output in outputs:
+        if output['output_type'] == 'stream' and output['name'] == 'stdout':
+            return output['text']
+    return None
+
+
 def test_welcome():
     # No cell outputs to verify
     result = run_notebook(
@@ -34,6 +42,7 @@ def test_intro_add():
         '1_introduction/1-vector-addition.ipynb', NOTEBOOK_PATH)
     # TODO: add stdout compare for first cell
     assert result._7 is True  # First compare
+    assert get_stdout(result, 1) == 'SUCCESS!\n'
 
 
 def test_intro_add_mult():
@@ -41,6 +50,7 @@ def test_intro_add_mult():
         '1_introduction/2-vadd-and-vmult.ipynb', NOTEBOOK_PATH)
     # TODO: add stdout compare for first cell
     assert result._7 is True  # First compare
+    assert get_stdout(result, 1) == 'SUCCESS!\n'
 
 
 def test_intro_explore():
