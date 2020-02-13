@@ -1,6 +1,18 @@
 {
-    "xilinx_u200_xdma_201830_2": "https://www.xilinx.com/bin/public/openDownload?filename=alveopynq.intro.xilinx_u200_xdma_201830_2.xclbin",
-    "xilinx_u250_xdma_201830_2": "https://www.xilinx.com/bin/public/openDownload?filename=alveopynq.intro.xilinx_u250_xdma_201830_2.xclbin",
-    "xilinx_u280_xdma_201920_1": "https://www.xilinx.com/bin/public/openDownload?filename=alveopynq.intro.xilinx_u280_xdma_201920_1.xclbin ",
-    "xilinx_u50_xdma_201920_1": "https://www.xilinx.com/bin/public/openDownload?filename=alveopynq.intro.xilinx_u50_xdma_201920_1.xclbin "
+    "xilinx_u200_xdma_201830_2": {
+        "url": "https://www.xilinx.com/bin/public/openDownload?filename=alveopynq.intro.xilinx_u200_xdma_201830_2.xclbin",
+        "md5sum": "e5d165118c9e827b61824c95e9a3fac5"
+    },
+    "xilinx_u250_xdma_201830_2": {
+        "url": "https://www.xilinx.com/bin/public/openDownload?filename=alveopynq.intro.xilinx_u250_xdma_201830_2.xclbin",
+        "md5sum": "afb159e56cf895fe4781dfba61818f28"
+    },
+    "xilinx_u280_xdma_201920_1": {
+        "url": "https://www.xilinx.com/bin/public/openDownload?filename=alveopynq.intro.xilinx_u280_xdma_201920_1.xclbin",
+        "md5sum": "baca46738470c4ecb3e93666159a36de"
+    },
+    "xilinx_u50_xdma_201920_1": {
+        "url": "https://www.xilinx.com/bin/public/openDownload?filename=alveopynq.intro.xilinx_u50_xdma_201920_1.xclbin",
+        "md5sum": "6420b104b7df5c37a6e12f976659218e"
+    }
 }
